@@ -46,10 +46,10 @@ export function RadiusDemo({
       </div>
       
       {/* Labels */}
-      <div className="absolute -top-6 left-0 text-xs font-mono text-green-600 dark:text-green-400">
+      <div className="absolute top-6 left-2 text-sm md:text-base font-mono text-green-700 dark:text-green-400">
         {outerRadius}px
       </div>
-      <div className="absolute -bottom-6 right-0 text-xs font-mono text-gray-600 dark:text-gray-400">
+      <div className="absolute bottom-6 right-0 text-sm md:text-base font-mono text-gray-700 dark:text-gray-400">
         {padding}px
       </div>
     </div>
