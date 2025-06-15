@@ -1,15 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { calculateOuterRadius } from '@/utils/radius';
 import { RadiusDemo, ComparisonDemo, FloatingCalculatorPanel } from '@/components/radius-demo';
-import type { PanelPosition } from '@/types';
+import { calculateOuterRadius } from '@/utils/radius';
 
 export default function Home() {
-  const [innerRadius, setInnerRadius] = useState(10);
-  const [padding, setPadding] = useState(20);
+  const [innerRadius, setInnerRadius] = useState(20);
+  const [padding, setPadding] = useState(16);
   const [dimension, setDimension] = useState(200);
-  const [panelPosition, setPanelPosition] = useState<PanelPosition>('top-right');
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
 
   const borderRadius = calculateOuterRadius(innerRadius, padding);
@@ -152,8 +150,6 @@ export default function Home() {
 
       {/* Floating Calculator Panel */}
       <FloatingCalculatorPanel
-        position={panelPosition}
-        onPositionChange={setPanelPosition}
         borderRadius={borderRadius}
         innerRadius={innerRadius}
         setInnerRadius={setInnerRadius}
