@@ -1,13 +1,12 @@
+import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
-import type { FloatingCalculatorPanelProps, PanelPosition } from '@/types';
+import type { FloatingCalculatorPanelProps } from '@/types';
 
 /**
  * Floating Interactive Calculator Panel
  */
 export function FloatingCalculatorPanel({
-  position,
-  onPositionChange,
   borderRadius,
   innerRadius,
   setInnerRadius,
@@ -15,44 +14,18 @@ export function FloatingCalculatorPanel({
   setPadding,
   dimension,
   setDimension,
-  maxPadding,
-  isCollapsed,
-  setIsCollapsed
+  maxPadding
 }: FloatingCalculatorPanelProps) {
-  const getPositionClasses = () => {
-    switch (position) {
-      case 'top-left':
-        return 'top-4 left-4';
-      case 'top-right':
-        return 'top-4 right-4';
-      case 'bottom-left':
-        return 'bottom-4 left-4';
-      case 'bottom-right':
-        return 'bottom-4 right-4';
-      default:
-        return 'bottom-4 right-4';
-    }
-  };
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
-    <div className={`fixed ${getPositionClasses()} z-50 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700`}>
+    <div className="fixed bottom-4 left-4 right-4 md:top-4 md:right-4 md:left-auto md:bottom-auto z-50 w-auto md:w-90 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-base md:text-lg font-semibold tracking-wide text-gray-900 dark:text-white">
           Interactive Calculator
         </h3>
         <div className="flex items-center gap-2">
-          {/* Position selector */}
-          <select
-            value={position}
-            onChange={(e) => onPositionChange(e.target.value as PanelPosition)}
-            className="text-xs bg-gray-100 dark:bg-gray-700 border-0 rounded px-2 py-1 text-gray-900 dark:text-gray-100"
-          >
-            <option value="top-left">Top Left</option>
-            <option value="top-right">Top Right</option>
-            <option value="bottom-left">Bottom Left</option>
-            <option value="bottom-right">Bottom Right</option>
-          </select>
           {/* Collapse button */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -64,7 +37,13 @@ export function FloatingCalculatorPanel({
       </div>
 
       {/* Content */}
-      {!isCollapsed && (
+      <div 
+        className={`overflow-hidden transition-all duration-300 ease-out ${
+          isCollapsed 
+            ? 'max-h-0 opacity-0 transform scale-y-95' 
+            : 'max-h-[800px] opacity-100 transform scale-y-100'
+        }`}
+      >
         <div className="p-4 space-y-4">
           {/* Controls */}
           <div className="space-y-3">
@@ -123,7 +102,7 @@ export function FloatingCalculatorPanel({
           {/* CSS Code Output */}
           <div className="p-3 bg-gray-900 dark:bg-gray-800 rounded-lg text-xs">
             <div className="text-gray-400 mb-1 font-semibold">Generated CSS:</div>
-            <pre className="text-green-400 font-mono text-xs leading-tight">
+            <pre className="text-green-400 font-mono text-xs leading-tight overflow-x-auto">
 {`.outer-container {
   width: ${dimension}px;
   height: ${dimension}px;
@@ -137,7 +116,7 @@ export function FloatingCalculatorPanel({
             </pre>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 } 

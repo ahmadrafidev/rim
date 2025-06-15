@@ -1,8 +1,5 @@
 import type { SliderProps } from '@/types';
 
-/**
- * Custom slider component for consistent styling
- */
 export function Slider({ 
   label, 
   value, 

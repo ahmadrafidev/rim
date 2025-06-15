@@ -1,5 +1,3 @@
-export type PanelPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-
 export interface SliderProps {
   label: string;
   value: number;
@@ -19,8 +17,6 @@ export interface RadiusDemoProps {
 }
 
 export interface FloatingCalculatorPanelProps {
-  position: PanelPosition;
-  onPositionChange: (position: PanelPosition) => void;
   borderRadius: number;
   innerRadius: number;
   setInnerRadius: (value: number) => void;
