@@ -4,6 +4,7 @@ import { useState, memo, useCallback, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { RadiusDemo, ComparisonDemo } from '@/components/radius-demo';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { Footer } from '@/components/footer';
 import { calculateOuterRadius } from '@/utils/radius';
 
 const FloatingCalculatorPanel = dynamic(
@@ -214,6 +215,9 @@ const Home = memo(function Home() {
         isCollapsed={isPanelCollapsed}
         setIsCollapsed={handlePanelToggle}
       />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 });
