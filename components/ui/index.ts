@@ -1,1 +1,2 @@
-export { Slider } from './slider'; 
+export * from './slider';
+export * from './theme-toggle'; 

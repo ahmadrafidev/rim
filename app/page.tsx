@@ -1,41 +1,90 @@
 'use client';
 
-import { useState } from 'react';
-import { RadiusDemo, ComparisonDemo, FloatingCalculatorPanel } from '@/components/radius-demo';
+import { useState, memo, useCallback, useMemo, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { RadiusDemo, ComparisonDemo } from '@/components/radius-demo';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { calculateOuterRadius } from '@/utils/radius';
 
-export default function Home() {
+const FloatingCalculatorPanel = dynamic(
+  () => import('@/components/radius-demo').then(mod => ({ 
+    default: mod.FloatingCalculatorPanel 
+  })),
+  { 
+    loading: () => (
+      <div className="fixed bottom-4 left-4 right-4 md:top-6 md:left-6 md:right-auto md:bottom-auto z-50 w-auto md:w-96 h-96 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-800/50 animate-pulse">
+        <div className="p-4 border-b border-gray-200 dark:border-gray-800/50">
+          <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded w-3/4"></div>
+        </div>
+        <div className="p-4 space-y-4">
+          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-5/6"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-4/5"></div>
+        </div>
+      </div>
+    ),
+    ssr: false 
+  }
+);
+
+const Home = memo(function Home() {
   const [innerRadius, setInnerRadius] = useState(20);
   const [padding, setPadding] = useState(16);
-  const [dimension, setDimension] = useState(200);
+  const [dimension, setDimension] = useState(250);
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
 
-  const borderRadius = calculateOuterRadius(innerRadius, padding);
-  const maxPadding = Math.floor(dimension / 2) - 10; 
+  const borderRadius = useMemo(() => calculateOuterRadius(innerRadius, padding), [innerRadius, padding]);
+  const maxPadding = useMemo(() => Math.max(0, Math.floor((dimension - 20) / 2)), [dimension]);
+
+  useEffect(() => {
+    if (padding > maxPadding) {
+      setPadding(Math.max(0, maxPadding));
+    } 
+  }, [maxPadding]); 
+
+  const handleInnerRadiusChange = useCallback((value: number) => {
+    setInnerRadius(value);
+  }, []);
+
+  const handlePaddingChange = useCallback((value: number) => {
+    setPadding(value); 
+  }, []);
+
+  const handleDimensionChange = useCallback((value: number) => {
+    setDimension(value);
+  }, []);
+
+  const handlePanelToggle = useCallback((collapsed: boolean) => {
+    setIsPanelCollapsed(collapsed);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* First Section - Header and Live Preview */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900">
+      {/* Theme Toggle - Top Right */}
+      <div className="fixed top-6 right-6 z-40">
+        <ThemeToggle />
+      </div>
+
       <section className="min-h-screen flex flex-col justify-center py-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex-1 flex flex-col justify-center">
           <header className="text-center mb-4">
             <h1 className="text-3xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">
               Rim
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Fast and intuitive radius calculations
             </p>
           </header>
 
           {/* Live Preview */}
-          <div className="flex items-center justify-center flex-1 min-h-[400px]">
+          <main id="main-content" className="flex items-center justify-center flex-1 min-h-[400px]">
             <RadiusDemo
               outerRadius={borderRadius}
               innerRadius={innerRadius}
               padding={padding}
               dimension={dimension}
             />
-          </div>
+          </main>
         </div>
 
         {/* Scroll Indicator Cue */}
@@ -48,6 +97,7 @@ export default function Home() {
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path 
               strokeLinecap="round" 
@@ -60,10 +110,13 @@ export default function Home() {
       </section>
 
       {/* Second Section - Understanding the Math */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4" aria-labelledby="understanding-section">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8 max-w-6xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center">
+          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-8 max-w-6xl mx-auto border border-blue-100 dark:border-blue-900/30">
+            <h2 
+              id="understanding-section"
+              className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
+            >
               Understanding the Math: Right vs Wrong
             </h2>
             
@@ -152,15 +205,17 @@ export default function Home() {
       <FloatingCalculatorPanel
         borderRadius={borderRadius}
         innerRadius={innerRadius}
-        setInnerRadius={setInnerRadius}
+        setInnerRadius={handleInnerRadiusChange}
         padding={padding}
-        setPadding={setPadding}
+        setPadding={handlePaddingChange}
         dimension={dimension}
-        setDimension={setDimension}
+        setDimension={handleDimensionChange}
         maxPadding={maxPadding}
         isCollapsed={isPanelCollapsed}
-        setIsCollapsed={setIsPanelCollapsed}
+        setIsCollapsed={handlePanelToggle}
       />
     </div>
   );
-}
+});
+
+export default Home;
