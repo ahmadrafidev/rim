@@ -67,8 +67,8 @@ export const RadiusDemo = memo(function RadiusDemo({
           {padding}px
         </span>
       </div>
-
-
     </div>
   );
 }); 
+
+RadiusDemo.displayName = 'RadiusDemo';

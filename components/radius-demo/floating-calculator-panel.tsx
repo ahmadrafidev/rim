@@ -267,3 +267,5 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
     </div>
   );
 }); 
+
+FloatingCalculatorPanel.displayName = 'FloatingCalculatorPanel';

@@ -60,7 +60,6 @@ export const ThemeToggle = memo(function ThemeToggle() {
         </button>
       ))}
       
-      {/* Current theme announcement for screen readers */}
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         Current theme: {theme}
         {theme === 'system' && `, resolved to ${resolvedTheme}`}

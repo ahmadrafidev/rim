@@ -124,3 +124,5 @@ export function Slider({
     </div>
   );
 } 
+
+Slider.displayName = 'Slider';

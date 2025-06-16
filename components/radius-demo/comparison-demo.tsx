@@ -1,8 +1,5 @@
 import { memo } from 'react';
 
-/**
- * Comparison component showing two scenarios side by side
- */
 export const ComparisonDemo = memo(function ComparisonDemo() {
   const radius = 20;
   const padding = 8;
@@ -112,3 +109,5 @@ export const ComparisonDemo = memo(function ComparisonDemo() {
     </div>
   );
 }); 
+
+ComparisonDemo.displayName = 'ComparisonDemo';
