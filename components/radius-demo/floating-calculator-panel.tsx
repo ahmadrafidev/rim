@@ -20,7 +20,6 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
   const panelId = useId();
   const contentId = useId();
 
-  // Set ready state after component mounts to prevent hydration issues
   useEffect(() => {
     setIsReady(true);
   }, []);
@@ -93,14 +92,14 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
       {/* Dropdown Content */}
       <div 
         id={contentId}
-        className={`mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
           isCollapsed 
-            ? 'max-h-0 opacity-0' 
-            : 'max-h-96 opacity-100'
+            ? 'max-h-0 opacity-0 overflow-hidden' 
+            : 'max-h-[600px] opacity-100 overflow-hidden'
         }`}
         aria-hidden={isCollapsed}
       >
-        <div className="p-4 space-y-4 overflow-y-auto max-h-96">
+        <div className="p-4 space-y-4 overflow-y-auto max-h-[600px]">
           
           {/* Controls Section */}
           <div className="space-y-4">
