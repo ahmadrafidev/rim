@@ -1,4 +1,4 @@
-import { useState, memo, useId, useEffect } from 'react';
+import { useState, memo, useId } from 'react';
 import { ChevronDown, Calculator, Copy, Check } from 'lucide-react';
 
 import { Slider } from '@/components/ui/slider';
@@ -16,13 +16,8 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
 }: FloatingCalculatorPanelProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
-  const [isReady, setIsReady] = useState(false);
   const panelId = useId();
   const contentId = useId();
-
-  useEffect(() => {
-    setIsReady(true);
-  }, []);
 
   const toggleCollapsed = () => {
     setIsCollapsed(!isCollapsed);

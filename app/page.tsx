@@ -38,7 +38,7 @@ const Home = memo(function Home() {
     if (padding > maxPadding) {
       setPadding(Math.max(0, maxPadding));
     } 
-  }, [maxPadding]); 
+  }, [maxPadding, padding]); 
 
   const handleInnerRadiusChange = useCallback((value: number) => {
     setInnerRadius(value);
