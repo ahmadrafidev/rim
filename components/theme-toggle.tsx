@@ -36,7 +36,7 @@ export const ThemeToggle = memo(function ThemeToggle() {
           onClick={() => setTheme(value)}
           className={`
             relative flex items-center justify-center p-2 rounded-md transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800
+            focus:outline-none focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800
             ${theme === value 
               ? 'bg-blue-500 text-white shadow-sm' 
               : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'

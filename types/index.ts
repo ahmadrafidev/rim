@@ -25,6 +25,4 @@ export interface FloatingCalculatorPanelProps {
   dimension: number;
   setDimension: (value: number) => void;
   maxPadding: number;
-  isCollapsed: boolean;
-  setIsCollapsed: (collapsed: boolean) => void;
 } 

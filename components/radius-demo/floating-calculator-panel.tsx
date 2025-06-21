@@ -1,4 +1,4 @@
-import { useState, memo, useId } from 'react';
+import { useState, memo, useId, useEffect } from 'react';
 import { ChevronDown, Calculator, Copy, Check } from 'lucide-react';
 
 import { Slider } from '@/components/ui/slider';
@@ -16,14 +16,16 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
 }: FloatingCalculatorPanelProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const panelId = useId();
   const contentId = useId();
 
+  // Set ready state after component mounts to prevent hydration issues
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
+
   const toggleCollapsed = () => {
-    if (!hasInteracted) {
-      setHasInteracted(true);
-    }
     setIsCollapsed(!isCollapsed);
   };
 
@@ -91,9 +93,7 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
       {/* Dropdown Content */}
       <div 
         id={contentId}
-        className={`mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden ${
-          hasInteracted ? 'transition-all duration-300 ease-in-out' : ''
-        } ${
+        className={`mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
           isCollapsed 
             ? 'max-h-0 opacity-0' 
             : 'max-h-96 opacity-100'

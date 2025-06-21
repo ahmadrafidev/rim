@@ -13,14 +13,12 @@ const FloatingCalculatorPanel = dynamic(
   })),
   { 
     loading: () => (
-      <div className="fixed bottom-4 left-4 right-4 md:top-6 md:left-6 md:right-auto md:bottom-auto z-50 w-auto md:w-96 h-96 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-800/50 animate-pulse">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-800/50">
-          <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded w-3/4"></div>
-        </div>
-        <div className="p-4 space-y-4">
-          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full"></div>
-          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-5/6"></div>
-          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-4/5"></div>
+      <div className="fixed top-8 left-8 z-50 w-80">
+        <div className="w-full px-4 py-3 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-300/50 dark:border-gray-600/50 rounded-lg shadow-sm animate-pulse">
+          <div className="flex items-center gap-3">
+            <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-32"></div>
+          </div>
         </div>
       </div>
     ),
@@ -32,7 +30,6 @@ const Home = memo(function Home() {
   const [innerRadius, setInnerRadius] = useState(20);
   const [padding, setPadding] = useState(16);
   const [dimension, setDimension] = useState(250);
-  const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
 
   const borderRadius = useMemo(() => calculateOuterRadius(innerRadius, padding), [innerRadius, padding]);
   const maxPadding = useMemo(() => Math.max(0, Math.floor((dimension - 20) / 2)), [dimension]);
@@ -53,10 +50,6 @@ const Home = memo(function Home() {
 
   const handleDimensionChange = useCallback((value: number) => {
     setDimension(value);
-  }, []);
-
-  const handlePanelToggle = useCallback((collapsed: boolean) => {
-    setIsPanelCollapsed(collapsed);
   }, []);
 
   return (
@@ -212,8 +205,6 @@ const Home = memo(function Home() {
         dimension={dimension}
         setDimension={handleDimensionChange}
         maxPadding={maxPadding}
-        isCollapsed={isPanelCollapsed}
-        setIsCollapsed={handlePanelToggle}
       />
 
       {/* Footer */}
