@@ -14,7 +14,7 @@ export const ThemeToggle = memo(function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center space-x-1 bg-white/90 backdrop-blur-xl rounded-lg p-1 border border-gray-200/50 shadow-lg">
+      <div className="flex items-center bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-300 dark:border-gray-600 shadow-sm">
         <div className="flex items-center justify-center p-2 rounded-md w-8 h-8">
           <Monitor size={16} className="text-gray-400" />
         </div>
@@ -29,18 +29,17 @@ export const ThemeToggle = memo(function ThemeToggle() {
   ];
 
   return (
-    <div className="flex items-center space-x-1 bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl rounded-lg p-1 border border-gray-200/50 dark:border-gray-800/50 shadow-lg">
+    <div className="flex items-center bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-300 dark:border-gray-600 shadow-sm">
       {themes.map(({ value, label, icon: Icon }) => (
         <button
           key={value}
           onClick={() => setTheme(value)}
           className={`
-            relative flex items-center justify-center p-2 rounded-md transition-all duration-200
-            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950
-            hover:bg-gray-50 dark:hover:bg-gray-800
+            relative flex items-center justify-center p-2 rounded-md transition-colors duration-200
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800
             ${theme === value 
-              ? 'bg-gray-50 dark:bg-gray-800 shadow-sm text-gray-900 dark:text-gray-100' 
-              : 'text-gray-600 dark:text-gray-400'
+              ? 'bg-blue-500 text-white shadow-sm' 
+              : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
             }
           `}
           aria-label={`Switch to ${label.toLowerCase()} theme`}
@@ -50,9 +49,7 @@ export const ThemeToggle = memo(function ThemeToggle() {
         >
           <Icon 
             size={16} 
-            className={`transition-colors ${
-              theme === value ? 'text-blue-600 dark:text-blue-400' : ''
-            }`}
+            className="transition-colors"
             aria-hidden="true"
           />
           <span className="sr-only">{label}</span>
