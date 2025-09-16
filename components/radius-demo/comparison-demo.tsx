@@ -5,7 +5,7 @@ export const ComparisonDemo = memo(function ComparisonDemo() {
   const padding = 8;
   
   return (
-    <div className="grid md:grid-cols-2 gap-6 mb-6" role="group" aria-labelledby="comparison-title">
+    <div className="grid md:grid-cols-2 gap-6 mb-6" role="group" aria-labelledby="comparison-title" aria-label="Comparison of correct and incorrect radius calculation approaches">
       
       {/* Scenario 1: outer r = inner r */}
       <div className="text-center space-y-3">

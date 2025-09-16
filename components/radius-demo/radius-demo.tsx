@@ -8,8 +8,8 @@ export const RadiusDemo = memo(function RadiusDemo({
   dimension 
 }: RadiusDemoProps) {
   return (
-    <div 
-      className="relative flex items-center justify-center" 
+    <div
+      className="relative flex items-center justify-center"
       style={{ width: dimension + 100, height: dimension + 100 }}
       role="img"
       aria-labelledby="radius-demo-title"

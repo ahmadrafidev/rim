@@ -81,25 +81,31 @@ const Home = memo(function Home() {
           </main>
         </div>
 
-        {/* Scroll Indicator Cue */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-            Learn more about the math
-          </p>
-          <svg 
-            className="w-6 h-6 text-gray-400 dark:text-gray-500" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-            aria-hidden="true"
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <button
+            onClick={() => document.querySelector('#understanding-section')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex flex-col items-center animate-bounce focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-950 rounded-lg p-2 group"
+            aria-label="Scroll down to learn more about the radius calculation math"
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-            />
-          </svg>
+            <span className="text-sm text-gray-500 dark:text-gray-400 mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+              Learn more about the math
+            </span>
+            <svg
+              className="w-6 h-6 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -107,21 +113,24 @@ const Home = memo(function Home() {
       <section className="py-16 px-4" aria-labelledby="understanding-section">
         <div className="max-w-7xl mx-auto">
           <div className="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-8 max-w-6xl mx-auto border border-blue-100 dark:border-blue-900/30">
-            <h2 
+            <h2
               id="understanding-section"
               className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
             >
               Understanding the Math: Right vs Wrong
             </h2>
-            
+
             {/* Comparison Demo */}
+            <div className="sr-only">
+              <h3 id="comparison-title">Visual Comparison of Radius Calculation Approaches</h3>
+            </div>
             <ComparisonDemo />
 
             {/* Right vs Wrong Explanation */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6 border-2 border-red-200 dark:border-red-800">
                 <div className="flex items-center mb-3">
-                  <div className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+                  <div className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3" aria-hidden="true">
                     ✗
                   </div>
                   <h3 className="text-lg font-semibold text-red-700 dark:text-red-300">
@@ -140,7 +149,7 @@ const Home = memo(function Home() {
 
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border-2 border-green-200 dark:border-green-800">
                 <div className="flex items-center mb-3">
-                  <div className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+                  <div className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3" aria-hidden="true">
                     ✓
                   </div>
                   <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">

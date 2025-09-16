@@ -1,4 +1,4 @@
-import { useState, memo, useId } from 'react';
+import { useState, memo, useId, useEffect, useRef } from 'react';
 import { ChevronDown, Calculator, Copy, Check } from 'lucide-react';
 
 import { Slider } from '@/components/ui/slider';
@@ -18,6 +18,23 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
   const [isCopied, setIsCopied] = useState(false);
   const panelId = useId();
   const contentId = useId();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // Focus management and keyboard handling
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !isCollapsed) {
+        setIsCollapsed(true);
+        triggerRef.current?.focus();
+      }
+    };
+
+    if (!isCollapsed) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isCollapsed]);
 
   const toggleCollapsed = () => {
     setIsCollapsed(!isCollapsed);
@@ -45,13 +62,15 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
   };
 
   return (
-    <div 
+    <div
+      ref={panelRef}
       className="fixed top-8 left-8 z-50 w-80"
       role="region"
       aria-labelledby={panelId}
     >
       {/* Dropdown Trigger */}
       <button
+        ref={triggerRef}
         onClick={toggleCollapsed}
         aria-expanded={!isCollapsed}
         aria-controls={contentId}
@@ -66,7 +85,7 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
         type="button"
       >
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-blue-500 rounded text-white">
+          <div className="p-1.5 bg-blue-500 rounded text-white" aria-hidden="true">
             <Calculator size={14} aria-hidden="true" />
           </div>
           <span 
@@ -160,12 +179,15 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
               </h4>
               <button
                 onClick={copyToClipboard}
-                className="flex items-center gap-1.5 px-2 py-1 text-xs font-medium 
-                           text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100
-                           bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 
-                           rounded border border-gray-300 dark:border-gray-500
-                           transition-colors duration-200"
-                aria-label="Copy CSS code to clipboard"
+                className="
+                flex items-center gap-1.5 px-2 py-1 text-xs font-medium
+                text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100
+                bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500
+                rounded border border-gray-300 dark:border-gray-500
+                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
+                transition-colors duration-200"
+                aria-label={`Copy CSS code to clipboard${isCopied ? ' - Copied!' : ''}`}
+                type="button"
               >
                 {isCopied ? (
                   <Check size={12} className="text-green-600 dark:text-green-400" />
