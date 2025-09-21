@@ -11,7 +11,7 @@ export function Footer() {
               href="https://x.com/arayyye"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent font-medium text-xs sm:text-sm md:text-base"
+              className="text-gray-800 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-300 transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-transparent font-medium text-xs sm:text-sm md:text-base"
               aria-label="Visit arayyye's Twitter profile (opens in new tab)"
             >
               arayyye.
@@ -23,7 +23,7 @@ export function Footer() {
               href="https://github.com/ahmadrafidev/rim"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent font-medium text-xs sm:text-sm md:text-base"
+              className="text-gray-800 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-300 transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-transparent font-medium text-xs sm:text-sm md:text-base"
               aria-label="View source code on GitHub (opens in new tab)"
             >
               GitHub.

@@ -80,12 +80,12 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
           border border-gray-300 dark:border-gray-600
           rounded-lg shadow-sm
           hover:bg-gray-50 dark:hover:bg-gray-700
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+          focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500
           transition-colors duration-200"
         type="button"
       >
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-blue-500 rounded text-white" aria-hidden="true">
+          <div className="p-1.5 bg-gray-700 dark:bg-gray-600 rounded text-white" aria-hidden="true">
             <Calculator size={14} aria-hidden="true" />
           </div>
           <span 
@@ -165,7 +165,7 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
               <div className="border-t border-gray-200 dark:border-gray-600 pt-2 mt-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="font-medium text-gray-900 dark:text-gray-100">Outer Radius</span>
-                  <span className="font-mono font-bold text-blue-600 dark:text-blue-400">{borderRadius}px</span>
+                  <span className="font-mono font-bold text-gray-800 dark:text-gray-200">{borderRadius}px</span>
                 </div>
               </div>
             </div>
@@ -205,20 +205,20 @@ export const FloatingCalculatorPanel = memo(function FloatingCalculatorPanel({
                 <code>
 {`.outer-container {`}
                   <br />
-                  <span className="text-blue-300">  width</span><span className="text-gray-400">:</span> <span className="text-green-300">{dimension}px</span><span className="text-gray-400">;</span>
+                  <span className="text-purple-300 dark:text-purple-400">  width</span><span className="text-gray-400">:</span> <span className="text-green-300">{dimension}px</span><span className="text-gray-400">;</span>
                   <br />
-                  <span className="text-blue-300">  height</span><span className="text-gray-400">:</span> <span className="text-green-300">{dimension}px</span><span className="text-gray-400">;</span>
+                  <span className="text-purple-300 dark:text-purple-400">  height</span><span className="text-gray-400">:</span> <span className="text-green-300">{dimension}px</span><span className="text-gray-400">;</span>
                   <br />
-                  <span className="text-blue-300">  border-radius</span><span className="text-gray-400">:</span> <span className="text-green-300">{borderRadius}px</span><span className="text-gray-500">; /* {innerRadius}px + {padding}px */</span>
+                  <span className="text-purple-300 dark:text-purple-400">  border-radius</span><span className="text-gray-400">:</span> <span className="text-green-300">{borderRadius}px</span><span className="text-gray-500">; /* {innerRadius}px + {padding}px */</span>
                   <br />
-                  <span className="text-blue-300">  padding</span><span className="text-gray-400">:</span> <span className="text-green-300">{padding}px</span><span className="text-gray-400">;</span>
+                  <span className="text-purple-300 dark:text-purple-400">  padding</span><span className="text-gray-400">:</span> <span className="text-green-300">{padding}px</span><span className="text-gray-400">;</span>
                   <br />
 {`}`}
                   <br />
                   <br />
 {`.inner-content {`}
                   <br />
-                  <span className="text-blue-300">  border-radius</span><span className="text-gray-400">:</span> <span className="text-green-300">{innerRadius}px</span><span className="text-gray-400">;</span>
+                  <span className="text-purple-300 dark:text-purple-400">  border-radius</span><span className="text-gray-400">:</span> <span className="text-green-300">{innerRadius}px</span><span className="text-gray-400">;</span>
                   <br />
 {`}`}
                 </code>

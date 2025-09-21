@@ -62,10 +62,10 @@ const Home = memo(function Home() {
       <section className="min-h-screen flex flex-col justify-center py-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex-1 flex flex-col justify-center">
           <header className="text-center mb-4">
-            <h1 className="text-3xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">
               Rim
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Fast and intuitive radius calculations
             </p>
           </header>
@@ -112,7 +112,7 @@ const Home = memo(function Home() {
       {/* Second Section - Understanding the Math */}
       <section className="py-16 px-4" aria-labelledby="understanding-section">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-8 max-w-6xl mx-auto border border-blue-100 dark:border-blue-900/30">
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-6xl mx-auto border border-gray-300 dark:border-zinc-700 shadow-xl shadow-gray-900/10 dark:shadow-zinc/30">
             <h2
               id="understanding-section"
               className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
@@ -169,17 +169,17 @@ const Home = memo(function Home() {
             {/* Formula and Details */}
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
-                <h3 className="font-semibold mb-3 text-blue-700 dark:text-blue-300 text-sm md:text-base">
+                <h3 className="font-semibold mb-3 text-gray-800 dark:text-gray-300 text-sm md:text-base">
                   The Formula
                 </h3>
                 <div className="space-y-2">
-                  <code className="bg-blue-100 dark:bg-blue-800 px-3 py-2 rounded text-sm font-mono block">
+                  <code className="bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded text-sm font-mono block">
                     outer_radius = inner_radius + padding
                   </code>
                 </div>
               </div>
               <div className="text-center">
-                <h3 className="font-semibold mb-3 text-blue-700 dark:text-blue-300 text-sm md:text-base">
+                <h3 className="font-semibold mb-3 text-gray-800 dark:text-gray-300 text-sm md:text-base">
                   Why It Matters
                 </h3>
                 <p className="text-sm text-justify">
@@ -188,7 +188,7 @@ const Home = memo(function Home() {
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="font-semibold mb-3 text-blue-700 dark:text-blue-300 text-sm md:text-base">
+                <h3 className="font-semibold mb-3 text-gray-800 dark:text-gray-300 text-sm md:text-base">
                   Common Use Cases
                 </h3>
                 <ul className="text-sm space-y-1 text-justify">

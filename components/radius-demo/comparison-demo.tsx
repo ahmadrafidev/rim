@@ -12,8 +12,8 @@ export const ComparisonDemo = memo(function ComparisonDemo() {
         <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200">
           outer <span className="text-red-500">r</span> = inner <span className="text-red-500">r</span>
         </h3>
-        <div 
-          className="relative mx-auto" 
+        <div
+          className="relative mx-auto"
           style={{ width: 250, height: 160 }}
           role="img"
           aria-label={`Wrong approach: Both outer and inner containers using ${radius}px radius, showing visual inconsistency`}
